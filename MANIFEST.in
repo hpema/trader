@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include trader *.css
+recursive-include trader *.csv
+recursive-include trader *.html
+recursive-include trader *.ico
+recursive-include trader *.js
+recursive-include trader *.json
+recursive-include trader *.md
+recursive-include trader *.png
+recursive-include trader *.py
+recursive-include trader *.svg
+recursive-include trader *.txt
+recursive-exclude trader *.pyc
