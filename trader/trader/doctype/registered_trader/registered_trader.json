@@ -1,0 +1,101 @@
+{
+ "actions": [],
+ "creation": "2021-09-30 12:16:10.047227",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "license_key",
+  "trader_name",
+  "column_break_2",
+  "approved",
+  "erpnext_intergration",
+  "date_first_activated",
+  "section_break_7",
+  "attached_machines",
+  "section_break_9",
+  "broker_accounts"
+ ],
+ "fields": [
+  {
+   "fieldname": "license_key",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "License Key",
+   "unique": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "approved",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Approved"
+  },
+  {
+   "fieldname": "date_first_activated",
+   "fieldtype": "Date",
+   "label": "Date First Activated",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "trader_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Trader Name"
+  },
+  {
+   "fieldname": "attached_machines",
+   "fieldtype": "Table",
+   "label": "Attached Machines",
+   "options": "Attached Machine"
+  },
+  {
+   "default": "0",
+   "fieldname": "erpnext_intergration",
+   "fieldtype": "Check",
+   "label": "ERPNext Intergration"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_9",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "broker_accounts",
+   "fieldtype": "Table",
+   "label": "Broker Accounts",
+   "options": "Broker Account"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-10-17 08:33:42.343837",
+ "modified_by": "Administrator",
+ "module": "Trader",
+ "name": "Registered Trader",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
