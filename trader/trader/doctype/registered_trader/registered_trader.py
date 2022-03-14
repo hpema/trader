@@ -72,6 +72,12 @@ def set_ports(license, registered_trader):
 	return accounts
 
 @frappe.whitelist(allow_guest=True)
+def check_regitered(license, hdd_serial):
+	exists = frappe.db.exists('Registered Trader',{'license_key': license, ""})
+	
+	return exists
+
+@frappe.whitelist(allow_guest=True)
 def ping():
 	return "pong"
 
