@@ -5,10 +5,13 @@
 from frappe.model.document import Document
 import frappe
 import json
+import uuid
 
 class RegisteredTrader(Document):
 	pass
 
+def generate_key():
+	return uuid.uuid4()
 
 @frappe.whitelist(allow_guest=True)
 def ports(license, broker, account, push, pull, pub):
@@ -73,9 +76,22 @@ def set_ports(license, registered_trader):
 
 @frappe.whitelist(allow_guest=True)
 def check_registered(license, hdd_serial):
+	bFound = False
+
 	exists = frappe.db.exists('Registered Trader',{'license_key': license})
-	registered = frappe.get_doc('Registered Trader', exists)
-	return registered
+	if exists:
+		registered = frappe.get_doc('Registered Trader', exists)
+		for hdd in registered.attached_machines:
+			if hdd.hard_drive_serial_number == hdd_serial:
+				bFound = True
+				break
+		if bFound == False:
+			#Add the serial number on the license
+			bFound = True
+	else:
+		#Looking for hdd serial incase its entire folder is copied
+		exists =
+	return bFound
 
 @frappe.whitelist(allow_guest=True)
 def ping():
