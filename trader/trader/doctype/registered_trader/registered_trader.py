@@ -91,7 +91,7 @@ def check_registered(license, hdd_serial):
 			bFound = True
 	else:
 		#Looking for hdd serial incase its entire folder is copied
-		exists =
+		pass
 	return bFound
 
 @frappe.whitelist(allow_guest=True)
