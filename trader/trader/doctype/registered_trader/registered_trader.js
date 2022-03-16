@@ -15,6 +15,7 @@ frappe.ui.form.on('Registered Trader', {
 					else
 					{
 						console.log('Already licensed....');
+						console.log(frm);
 					}
 				}
 			});
