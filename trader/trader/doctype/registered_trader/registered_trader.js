@@ -10,7 +10,7 @@ frappe.ui.form.on('Registered Trader', {
 				callback: function (r){
 					if(!frm.doc.license_key)
 					{
-						frm.set_value("license_key",r)
+						frm.set_value("license_key",r.message)
 					}
 					else
 					{
