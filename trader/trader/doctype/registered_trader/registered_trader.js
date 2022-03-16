@@ -11,12 +11,12 @@ frappe.ui.form.on('Registered Trader', {
 					if(!frm.doc.license_key)
 					{
 						frm.set_value("license_key",r.message)
+						console.log(frm.doc.license_key);
 					}
 					else
 					{
 						console.log('Already licensed....');
 					}
-					console.log(frm.doc.license_key);
 				}
 			});
 		});
