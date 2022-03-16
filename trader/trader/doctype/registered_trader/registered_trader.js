@@ -8,7 +8,14 @@ frappe.ui.form.on('Registered Trader', {
 				method: 'trader.trader.doctype.registered_trader.registered_trader.generate_key',
 				args: {},
 				callback: function (r){
-					console.log(r);
+					if(frm.doc.license_key == '')
+					{
+						frm.doc.license_key = r
+					}
+					else
+					{
+						console.log(r);
+					}
 				}
 			});
 		}, __("Utilities"));
