@@ -19,7 +19,7 @@ frappe.ui.form.on('Registered Trader', {
 					console.log(frm.doc.license_key);
 				}
 			});
-		}, __("Utilities"));
+		});
 	}
 	
 });
