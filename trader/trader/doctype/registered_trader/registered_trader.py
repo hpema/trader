@@ -96,5 +96,5 @@ def check_registered(license, hdd_serial):
 
 @frappe.whitelist(allow_guest=True)
 def ping():
-	return "pong"
+	return "pong pong"
 
