@@ -12,7 +12,8 @@ class RegisteredTrader(Document):
 
 @frappe.whitelist(allow_guest=True)
 def generate_key():
-	return uuid.uuid4()
+	x = uuid.uuid4()
+	return str(x)
 
 @frappe.whitelist(allow_guest=True)
 def ports(license, broker, account, push, pull, pub):
