@@ -8,15 +8,15 @@ frappe.ui.form.on('Registered Trader', {
 				method: 'trader.trader.doctype.registered_trader.registered_trader.generate_key',
 				args: {},
 				callback: function (r){
-					if(frm.doc.license_key == '')
+					if(!frm.doc.license_key)
 					{
-						frm.doc.license_key = r
+						frm.set_value("license_key",r)
 					}
 					else
 					{
 						console.log('Already licensed....');
-						console.log(frm);
 					}
+					console.log(frm.doc.license_key);
 				}
 			});
 		}, __("Utilities"));
