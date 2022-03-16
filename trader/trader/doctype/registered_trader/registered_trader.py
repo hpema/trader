@@ -10,7 +10,7 @@ import uuid
 class RegisteredTrader(Document):
 	pass
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def generate_key():
 	return uuid.uuid4()
 
