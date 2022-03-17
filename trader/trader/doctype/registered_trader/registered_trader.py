@@ -83,7 +83,7 @@ def set_ports(license, registered_trader):
 
 @frappe.whitelist(allow_guest=True)
 def check_registered(license, hdd_serial):
-	lic = {"valid" : False,	"name" : ""	}
+	lic = {"valid" : False}
 	
 	#message = []
 	exists = frappe.db.exists('Registered Trader',{'license_key': license})
