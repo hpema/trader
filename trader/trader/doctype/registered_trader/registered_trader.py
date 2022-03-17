@@ -86,8 +86,7 @@ def check_registered(license, hdd_serial):
 	lic = 
 	{
 		"valid" : False,
-		"name" : "",
-		"registered_trader" : {}
+		"name" : ""
 	}
 	
 	#message = []
