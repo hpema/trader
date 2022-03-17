@@ -89,12 +89,13 @@ def check_registered(license, hdd_serial):
 	if exists:
 		registered = frappe.get_doc('Registered Trader', exists)
 		for hdd in registered.attached_machines:
-			if hdd.hard_drive_serial_number == hdd_serial:
+			if hdd.hard_drive_serial_number == hdd_serial:	
 				bFound = True
 				break
-		if bFound == False:
-			#Add the serial number on the license
-			bFound = True
+			else:
+				attached_machine = frappe.get_doc("Attached Machine", hdd.get("name"))
+				attached_machine.approved = False
+				attached_machine.save()
 	else:
 		#Looking for hdd serial incase its entire folder is copied
 		pass
