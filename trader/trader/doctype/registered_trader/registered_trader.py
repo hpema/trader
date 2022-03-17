@@ -84,11 +84,13 @@ def set_ports(license, registered_trader):
 @frappe.whitelist(allow_guest=True)
 def check_registered(license, hdd_serial):
 	bFound = False
-
+	message = []
 	exists = frappe.db.exists('Registered Trader',{'license_key': license})
 	if exists:
+		message.append("Found licence")
 		registered = frappe.get_doc('Registered Trader', exists)
 		if len(registered.attached_machines)==0:
+			message.append("No hard drives")
 			doc = frappe.get_doc({
 				"name": "b27370155f",
                 "parent": registered.name,
@@ -99,18 +101,23 @@ def check_registered(license, hdd_serial):
                 "doctype": "Attached Machine"
 				})
 			doc.insert()
-			bFound = True
+			message.append("INSERTED hard drive")
+			#bFound = True
 		else:
+			message.append("Hard drives exists, checking serials...")
 			for hdd in registered.attached_machines:
 				if hdd.hard_drive_serial_number == hdd_serial:	
+					message.append("Found a matching serial number")
 					bFound = True
 					break
 				else:
+					message.append("Harddrive serial not matching, de-activate this one....")
 					attached_machine = frappe.get_doc("Attached Machine", hdd.get("name"))
 					attached_machine.approved = 0
 					attached_machine.save()
-
-	return bFound
+	else:
+		message.append("Licence Not Found")
+	return message
 
 @frappe.whitelist(allow_guest=True)
 def ping():
