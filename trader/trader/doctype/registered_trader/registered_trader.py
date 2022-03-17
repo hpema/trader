@@ -92,7 +92,6 @@ def check_registered(license, hdd_serial):
 		if len(registered.attached_machines)==0:
 			#message.append("No hard drives")
 			doc = frappe.get_doc({
-				"name": "b27370155f",
                 "parent": registered.name,
                 "parentfield": "attached_machines",
                 "parenttype": "Registered Trader",
@@ -115,6 +114,18 @@ def check_registered(license, hdd_serial):
 					attached_machine = frappe.get_doc("Attached Machine", hdd.get("name"))
 					attached_machine.approved = 0
 					attached_machine.save()
+			if bFound == False:
+				doc = frappe.get_doc({
+					"parent": registered.name,
+					"parentfield": "attached_machines",
+					"parenttype": "Registered Trader",
+					"hard_drive_serial_number": hdd_serial,
+					"approved": 1,
+					"doctype": "Attached Machine"
+					})
+				doc.insert()
+				#message.append("INSERTED hard drive")
+				bFound = True
 	else:
 		#message.append("Licence Not Found")
 		bFound= False
