@@ -11,12 +11,14 @@ class RegisteredTrader(Document):
 	pass
 
 	def before_insert(self):
-		self.license_key = generate_key()
-		
+		self.license_key = uuid.uuid4()
+		frappe.msgprint(
+				_(self.license_key))
 
 @frappe.whitelist(allow_guest=False)
 def generate_key():
 	x = uuid.uuid4()
+	frappe.throw(x)
 	return str(x)
 
 @frappe.whitelist(allow_guest=True)
