@@ -83,14 +83,20 @@ def set_ports(license, registered_trader):
 
 @frappe.whitelist(allow_guest=True)
 def check_registered(license, hdd_serial):
-	lic.valid = False
+	lic = 
+	{
+		"valid" : False,
+		"name" : "",
+		"registered_trader" : {}
+	}
 	
 	#message = []
 	exists = frappe.db.exists('Registered Trader',{'license_key': license})
-	lic.name = exists
+	lic["name"] = exists
 	if exists:
 		#message.append("Found licence")
 		registered = frappe.get_doc('Registered Trader', exists)
+		lic["registered_trader"] = registered
 		if len(registered.attached_machines)==0:
 			#message.append("No hard drives")
 			doc = frappe.get_doc({
@@ -103,7 +109,7 @@ def check_registered(license, hdd_serial):
 				})
 			doc.insert()
 			#message.append("INSERTED hard drive")
-			lic.valid = True
+			lic["valid"] = True
 		else:
 			#message.append("Hard drives exists, checking serials...")
 			hdd_found = False
@@ -112,9 +118,9 @@ def check_registered(license, hdd_serial):
 					#message.append("Found a matching serial number")
 					hdd_found = True
 					if hdd.approved == "1":
-						lic.valid = True
+						lic["valid"] = True
 					else:
-						lic.valid = False
+						lic["valid"] = False
 					break
 				else:
 					#message.append("Harddrive serial not matching, de-activate this one....")
@@ -132,10 +138,10 @@ def check_registered(license, hdd_serial):
 					})
 				doc.insert()
 				#message.append("INSERTED hard drive")
-				lic.valid = True
+				lic["valid"] = True
 	else:
 		#message.append("Licence Not Found")
-		lic.valid= False
+		lic["valid"]= False
 	return lic
 
 @frappe.whitelist(allow_guest=True)
