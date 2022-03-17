@@ -107,7 +107,10 @@ def check_registered(license, hdd_serial):
 			for hdd in registered.attached_machines:
 				if hdd.hard_drive_serial_number == hdd_serial:	
 					#message.append("Found a matching serial number")
-					bFound = hdd.approved
+					if hdd.approved == "1":
+						bFound = True
+					else:
+						bFound = False
 					break
 				else:
 					#message.append("Harddrive serial not matching, de-activate this one....")
