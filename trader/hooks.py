@@ -89,13 +89,11 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+ doc_events = {
+ 	"Registered Trader": {
+ 		"before_insert": "trader.doctype.registered_trader.before_insert"
+	}
+ }
 
 # Scheduled Tasks
 # ---------------

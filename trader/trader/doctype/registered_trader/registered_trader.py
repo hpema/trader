@@ -10,6 +10,10 @@ import uuid
 class RegisteredTrader(Document):
 	pass
 
+	def before_insert(self):
+		self.license_key = generate_key()
+		
+
 @frappe.whitelist(allow_guest=False)
 def generate_key():
 	x = uuid.uuid4()
