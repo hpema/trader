@@ -83,11 +83,11 @@ def set_ports(license, registered_trader):
 
 @frappe.whitelist(allow_guest=True)
 def check_registered(license, hdd_serial):
-	license.valid = False
+	lic.valid = False
 	
 	#message = []
 	exists = frappe.db.exists('Registered Trader',{'license_key': license})
-	license.name = exists
+	lic.name = exists
 	if exists:
 		#message.append("Found licence")
 		registered = frappe.get_doc('Registered Trader', exists)
@@ -103,7 +103,7 @@ def check_registered(license, hdd_serial):
 				})
 			doc.insert()
 			#message.append("INSERTED hard drive")
-			license.valid = True
+			lic.valid = True
 		else:
 			#message.append("Hard drives exists, checking serials...")
 			hdd_found = False
@@ -112,9 +112,9 @@ def check_registered(license, hdd_serial):
 					#message.append("Found a matching serial number")
 					hdd_found = True
 					if hdd.approved == "1":
-						license.valid = True
+						lic.valid = True
 					else:
-						license.valid = False
+						lic.valid = False
 					break
 				else:
 					#message.append("Harddrive serial not matching, de-activate this one....")
@@ -132,11 +132,11 @@ def check_registered(license, hdd_serial):
 					})
 				doc.insert()
 				#message.append("INSERTED hard drive")
-				license.valid = True
+				lic.valid = True
 	else:
 		#message.append("Licence Not Found")
-		license.valid= False
-	return license
+		lic.valid= False
+	return lic
 
 @frappe.whitelist(allow_guest=True)
 def ping():
