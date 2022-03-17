@@ -83,9 +83,11 @@ def set_ports(license, registered_trader):
 
 @frappe.whitelist(allow_guest=True)
 def check_registered(license, hdd_serial):
-	bFound = False
+	licence.valid = False
+	
 	#message = []
 	exists = frappe.db.exists('Registered Trader',{'license_key': license})
+	license.name = exists
 	if exists:
 		#message.append("Found licence")
 		registered = frappe.get_doc('Registered Trader', exists)
@@ -134,7 +136,7 @@ def check_registered(license, hdd_serial):
 	else:
 		#message.append("Licence Not Found")
 		bFound= False
-	return bFound
+	return license
 
 @frappe.whitelist(allow_guest=True)
 def ping():
