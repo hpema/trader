@@ -95,7 +95,7 @@ def check_registered(license, hdd_serial):
                 "parentfield": "attached_machines",
                 "parenttype": "Registered Trader",
                 "hard_drive_serial_number": hdd_serial,
-                "approved": True,
+                "approved": 1,
                 "doctype": "Attached Machine"
 				})
 			doc.insert()
@@ -107,11 +107,9 @@ def check_registered(license, hdd_serial):
 					break
 				else:
 					attached_machine = frappe.get_doc("Attached Machine", hdd.get("name"))
-					attached_machine.approved = False
+					attached_machine.approved = 0
 					attached_machine.save()
-	else:
-		#Looking for hdd serial incase its entire folder is copied
-		pass
+
 	return bFound
 
 @frappe.whitelist(allow_guest=True)
