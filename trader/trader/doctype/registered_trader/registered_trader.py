@@ -18,7 +18,7 @@ class RegisteredTrader(Document):
 @frappe.whitelist(allow_guest=False)
 def generate_key():
 	x = uuid.uuid4()
-	frappe.throw(x)
+	frappe.msgprint("Running")
 	return str(x)
 
 @frappe.whitelist(allow_guest=True)
