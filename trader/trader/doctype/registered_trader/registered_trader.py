@@ -104,9 +104,11 @@ def check_registered(license, hdd_serial):
 			bFound = True
 		else:
 			#message.append("Hard drives exists, checking serials...")
+			hdd_found = False
 			for hdd in registered.attached_machines:
 				if hdd.hard_drive_serial_number == hdd_serial:	
 					#message.append("Found a matching serial number")
+					hdd_found = True
 					if hdd.approved == "1":
 						bFound = True
 					else:
@@ -117,7 +119,7 @@ def check_registered(license, hdd_serial):
 					attached_machine = frappe.get_doc("Attached Machine", hdd.get("name"))
 					attached_machine.approved = 0
 					attached_machine.save()
-			if bFound == False:
+			if hdd_found == False:
 				doc = frappe.get_doc({
 					"parent": registered.name,
 					"parentfield": "attached_machines",
