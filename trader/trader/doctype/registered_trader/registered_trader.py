@@ -14,12 +14,6 @@ class RegisteredTrader(Document):
 		self.license_key = str(uuid.uuid4())
 		#frappe.msgprint(self.license_key)
 
-@frappe.whitelist(allow_guest=False)
-def generate_key():
-	x = uuid.uuid4()
-	#frappe.msgprint("Running")
-	return str(x)
-
 @frappe.whitelist(allow_guest=True)
 def ports(license, broker, account, push, pull, pub):
 	exists = frappe.db.exists('Registered Trader',{'license_key': license})
