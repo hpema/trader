@@ -171,3 +171,5 @@ user_data_fields = [
 # 	"trader.auth.validate"
 # ]
 
+
+website_route_rules = [{'from_route': '/executor/<path:app_path>', 'to_route': 'executor'},]
