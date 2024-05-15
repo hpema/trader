@@ -3,72 +3,25 @@ import './index.css'
 import { createApp } from 'vue'
 import router from './router'
 import App from './App.vue'
-import { createPinia } from 'pinia'
 
 import {
-  FrappeUI,
   Button,
+  Card,
   Input,
-  TextInput,
-  FormControl,
-  ErrorMessage,
-  Dialog,
-  Alert,
-  Badge,
   setConfig,
   frappeRequest,
-  FeatherIcon,
-} from "FrappeUI"
-import translationPlugin from './translation'
-import { createDialog } from './utils/dialogs'
-import { initSocket } from './socket'
-
-let globalComponents = {
-  Button,
-  TextInput,
-  Input,
-  FormControl,
-  ErrorMessage,
-  Dialog,
-  Alert,
-  Badge,
-  FeatherIcon,
-}
-
-// create a pinia instance
-let pinia = createPinia()
+  resourcesPlugin,
+} from 'frappe-ui'
 
 let app = createApp(App)
 
 setConfig('resourceFetcher', frappeRequest)
-app.use(FrappeUI)
-app.use(pinia)
+
 app.use(router)
-app.use(translationPlugin)
-for (let key in globalComponents) {
-  app.component(key, globalComponents[key])
-}
+app.use(resourcesPlugin)
 
-app.config.globalProperties.$dialog = createDialog
+app.component('Button', Button)
+app.component('Card', Card)
+app.component('Input', Input)
 
-let socket
-if (import.meta.env.DEV) {
-  frappeRequest({ url: '/api/method/crm.www.crm.get_context_for_dev' }).then(
-    (values) => {
-      for (let key in values) {
-        window[key] = values[key]
-      }
-      socket = initSocket()
-      app.config.globalProperties.$socket = socket
-      app.mount('#app')
-    }
-  )
-} else {
-  socket = initSocket()
-  app.config.globalProperties.$socket = socket
-  app.mount('#app')
-}
-
-if (import.meta.env.DEV) {
-  window.$dialog = createDialog
-}
+app.mount('#app')

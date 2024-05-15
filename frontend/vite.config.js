@@ -1,38 +1,22 @@
+import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import path from 'path'
 import frappeui from 'frappe-ui/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    frappeui(),
-    vue({
-      script: {
-        propsDestructure: true,
-      },
-    }),
-  ],
+  plugins: [frappeui(), vue()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
   },
   build: {
-    outDir: '../trader/public/frontend',
+    outDir: `../${path.basename(path.resolve('..'))}/public/frontend`,
     emptyOutDir: true,
-    commonjsOptions: {
-      include: [/tailwind.config.js/, /node_modules/],
-    },
-    sourcemap: true,
+    target: 'es2015',
   },
   optimizeDeps: {
-    include: [
-      'feather-icons',
-      'showdown',
-      'tailwind.config.js',
-      'engine.io-client',
-      'prosemirror-state',
-    ],
+    include: ['frappe-ui > feather-icons', 'showdown', 'engine.io-client'],
   },
 })
