@@ -12,6 +12,7 @@ import {
   setConfig,
   frappeRequest,
   resourcesPlugin,
+  ListView
 } from 'frappe-ui'
 
 // create a pinia instance

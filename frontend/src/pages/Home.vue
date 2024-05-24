@@ -18,56 +18,6 @@
       <Button @click="session.logout.submit()">Logout</Button>
     </div>
 
-    <ListView
-    class="h-[250px]"
-    :columns="[
-      {
-        label: 'Name',
-        key: 'name',
-        width: 3,
-        getLabel: ({ row }) => row.name,
-      },
-      {
-        label: 'Email',
-        key: 'email',
-        width: '200px',
-      },
-      {
-        label: 'Role',
-        key: 'role',
-      },
-      {
-        label: 'Status',
-        key: 'status',
-      },
-    ]"
-    :rows="[
-      {
-        id: 1,
-        name: 'John Doe',
-        email: 'john@doe.com',
-        status: 'Active',
-        role: 'Developer',
-        user_image: 'https://avatars.githubusercontent.com/u/499550',
-      },
-      {
-        id: 2,
-        name: 'Jane Doe',
-        email: 'jane@doe.com',
-        status: 'Inactive',
-        role: 'HR',
-        user_image: 'https://avatars.githubusercontent.com/u/499120',
-      },
-    ]"
-    
-    row-key="id"
-  >
-    <template #cell="{ item, row, column }">
-      <span class="font-medium text-gray-700">
-        {{ item }}
-      </span>
-    </template>
-  </ListView>
     <div class="space-y-4">
     <div
       class="flex items-center justify-between"
@@ -83,6 +33,14 @@
   <Button @click="traders.next()"> Next Page </Button>
     <!-- Dialog -->
     <Dialog title="Some thing" v-model="showDialog"> {{ registered_trader.data[1] }} </Dialog>
+  </div>
+
+  <div>
+    <input type="file" ref="fileInput" @change="readFile" />
+    <div v-if="content">
+      <p>File Content:</p>
+      <pre>{{ content }}</pre>
+    </div>
   </div>
 </template>
 
@@ -154,4 +112,16 @@ let traders = createListResource({
 
 traders.fetch()
 const showDialog = ref(false)
+
+const fileInput = ref()
+
+function readFile() {
+      console.log("Files selected");
+      const reader = new FileReader();
+      const file = this.$ref.fileInput.files[0];
+      reader.onload = (e) => {
+        this.content = e.target.result;
+      };
+      reader.readAsText(file);
+    }
 </script>

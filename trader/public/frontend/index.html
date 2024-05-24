@@ -4,18 +4,20 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/assets/trader/frontend/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trader</title>
-    <script type="module" crossorigin src="/assets/trader/frontend/assets/index.f238f76d.js"></script>
-    <link rel="modulepreload" href="/assets/trader/frontend/assets/vendor.adf9dd71.js">
-    <link rel="stylesheet" href="/assets/trader/frontend/assets/vendor.1f7d581e.css">
-    <link rel="stylesheet" href="/assets/trader/frontend/assets/index.208e9d7e.css">
+    <title>Trader Desk</title>
+    <script type="module" crossorigin src="/assets/trader/frontend/assets/index.9aaf1964.js"></script>
+    <link rel="modulepreload" href="/assets/trader/frontend/assets/vendor.e96eee52.js">
+    <link rel="stylesheet" href="/assets/trader/frontend/assets/vendor.f874cace.css">
+    <link rel="stylesheet" href="/assets/trader/frontend/assets/index.1e531bc5.css">
   </head>
   <body>
     <div id="app"></div>
     <div id="modals"></div>
     <div id="popovers"></div>
 
-    <script> window.csrf_token = '{{ csrf_token }}'; </script>
+    <script>
+      window.csrf_token = '{{ frappe.session.csrf_token }}'
+    </script>
     
   </body>
 </html>
