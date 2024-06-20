@@ -172,4 +172,4 @@ user_data_fields = [
 # ]
 
 
-website_route_rules = [{'from_route': '/executor/<path:app_path>', 'to_route': 'executor'},]
+website_route_rules = [{'from_route': '/Executor/<path:app_path>', 'to_route': 'Executor'}, {'from_route': '/executor/<path:app_path>', 'to_route': 'executor'},]
