@@ -10,7 +10,8 @@
   "account_number",
   "push",
   "pull",
-  "pub"
+  "pub",
+  "filelocation"
  ],
  "fields": [
   {
@@ -48,12 +49,18 @@
    "fieldname": "pull",
    "fieldtype": "Int",
    "label": "PULL"
+  },
+  {
+   "fieldname": "filelocation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "FileLocation"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-10-17 11:11:18.519421",
+ "modified": "2024-10-23 11:16:47.856339",
  "modified_by": "Administrator",
  "module": "Trader",
  "name": "Broker Account",
@@ -61,5 +68,6 @@
  "permissions": [],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }
