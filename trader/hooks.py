@@ -172,4 +172,4 @@ user_data_fields = [
 # ]
 
 
-website_route_rules = [{'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'},]
+website_route_rules = []
