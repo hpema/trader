@@ -173,3 +173,4 @@ user_data_fields = [
 
 
 website_route_rules = []
+website_route_rules = [{'from_route': '/tradedesk/<path:app_path>', 'to_route': 'tradedesk'},]

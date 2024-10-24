@@ -1,0 +1,26 @@
+{
+  "name": "frappe-ui-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --base=/assets/trader/tradedesk/ && yarn copy-html-entry",
+    "preview": "vite preview",
+    "copy-html-entry": "cp ../trader/public/tradedesk/index.html ../trader/www/tradedesk.html"
+  },
+  "dependencies": {
+    "feather-icons": "^4.28.0",
+    "frappe-ui": "^0.1.71",
+    "mqtt": "^5.10.1",
+    "showdown": "^2.1.0",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.0.0",
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.15",
+    "vite": "2.9.15"
+  }
+}
